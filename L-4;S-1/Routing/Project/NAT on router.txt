@@ -1,0 +1,31 @@
+NAT on router
+-------------
+ip nat inside source list 1 int se0/0/0 overload
+ip nat inside source list 1 int se0/0/1 overload
+
+access-list 1 permit 10.27.220.0 0.0.0.127
+access-list 1 permit 10.27.220.128 0.0.0.127
+access-list 1 permit 10.27.221.0 0.0.0.127
+access-list 1 permit 10.27.221.128 0.0.0.127
+access-list 1 permit 10.27.222.0 0.0.0.127
+access-list 1 permit 10.27.222.128 0.0.0.15
+
+
+int range gig0/0-1
+ip nat inside
+int se0/0/0
+ip nat outside
+int se0/0/1
+ip nat outside
+
+ip route 0.0.0.0 0.0.0.0 se0/0/0
+ip route 0.0.0.0 0.0.0.0 se0/0/1 120
+do wr
+
+========
+default on MLt
+===========
+
+ip route 0.0.0.0 0.0.0.0 gig1/0/1
+ip route 0.0.0.0 0.0.0.0 gig1/0/2 120
+do wr

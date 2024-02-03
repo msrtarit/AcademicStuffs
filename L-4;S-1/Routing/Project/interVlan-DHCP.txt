@@ -1,0 +1,36 @@
+interVlan-DHCP
+------------
+
+
+int vlan 10
+no sh
+ip add 10.27.220.1 255.255.255.128
+ip helper-address 10.27.222.130
+ex
+
+int vlan 20
+no sh
+ip add 10.27.220.129 255.255.255.128
+ip helper-address 10.27.222.130
+
+int vlan 30
+no sh
+ip add 10.27.221.1 255.255.255.128
+ip helper-address 10.27.222.130
+
+int vlan 40
+no sh
+ip add 10.27.221.129 255.255.255.128
+ip helper-address 10.27.222.130
+
+int vlan 50
+no sh
+ip add 10.27.222.1 255.255.255.128
+ip helper-address 10.27.222.130
+
+int vlan 60
+no sh
+ip add 10.27.222.129 255.255.255.240
+ip helper-address 10.27.222.130
+
+

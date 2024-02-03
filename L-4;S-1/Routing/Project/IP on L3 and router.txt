@@ -1,0 +1,52 @@
+=============
+making port as router port
+=============
+
+conf t
+int range g1/0/1-2
+no switchport
+do wr
+exit
+
+=============
+assigning IP
+=============
+int gig1/0/1
+ip address 10.27.222.146 255.255.255.252
+no shutdown
+exit
+int gig1/0/2
+ip address 10.27.222.150 255.255.255.252
+no shutdown
+do wr
+
+===============
+Core router
+===============
+conf t
+int g0/0
+ip addr 10.27.222.153 255.255.255.252
+no shut
+exit
+int g0/1
+ip addr 10.27.222.157 255.255.255.252
+no shut
+exit
+int se0/0/0
+ip add 103.133.254.10 255.255.255.252
+no shut
+int se0/0/1
+ip add 103.133.254.14 255.255.255.252
+no shut
+
+===============
+ISP router
+===============
+int se0/0/0
+ip add 103.133.254.5 255.255.255.252
+clock rate 64000
+no shut
+int se0/0/1
+ip add 103.133.254.13 255.255.255.252
+clock rate 64000
+no shut

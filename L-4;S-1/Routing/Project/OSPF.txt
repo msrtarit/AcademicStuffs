@@ -1,0 +1,44 @@
+OSPF
+-----------------
+
+========
+l3
+========
+
+
+ip routing
+router ospf 10
+router-id 2.2.2.2
+
+
+network 10.27.220.0 0.0.0.127 area 0
+network 10.27.220.128 0.0.0.127 area 0
+network 10.27.221.0 0.0.0.127 area 0
+network 10.27.221.128 0.0.0.127 area 0
+network 10.27.222.0 0.0.0.127 area 0
+network 10.27.222.128 0.0.0.15 area 0
+network 10.27.222.152 0.0.0.3 area 0
+network 10.27.222.156 0.0.0.3 area 0
+
+
+===========
+core router
+===========
+
+router ospf 10
+router-id 4.4.4.4
+network 10.27.222.148 0.0.0.3 area 0
+network 10.27.222.156 0.0.0.3 area 0
+network 103.133.254.8 0.0.0.3 area 0
+network 103.133.254.12 0.0.0.3 area 0
+do wr
+exit
+
+=============
+ISP
+=============
+router ospf 10
+router-id 6.6.6.6
+network 103.133.254.4 0.0.0.3 area 0
+network 103.133.254.12 0.0.0.3 area 0
+do wr

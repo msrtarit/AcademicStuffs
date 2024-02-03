@@ -1,0 +1,52 @@
+
+conf t
+
+int range fa0/1-2
+switchport mode trunk
+exit
+vlan 60
+name SERVER
+vlan 99
+name BlackHole
+exit
+int range fa0/3-24
+switchport mode access
+switchport access vlan 60
+exit
+int range gig0/1-2
+switchport mode access
+switchport access vlan 99
+exit
+do wr
+
+
+==============
+for finance
+==============
+int range fa0/3-24
+switchport port-security maximum 1
+switchport port-security mac-address sticky
+switchport port-security violation shutdown
+
+
+
+================
+l3 sw
+================
+int range gig1/0/3-8
+switchport mode trunk
+vlan 10
+name SALES
+vlan 20
+name HR
+Vlan 30
+name FINANCE
+Vlan 40
+name ADMIN
+vlan 50
+name ICT
+Vlan 60
+name SERVER
+exit
+do wr
+
